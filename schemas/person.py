@@ -1,4 +1,4 @@
-from marshmallow_jsonapi.flask import Schema
+from marshmallow_jsonapi.flask import Schema, Relationship
 from marshmallow_jsonapi import fields
 
 
@@ -11,3 +11,10 @@ class PersonSchema(Schema):
 
     id = fields.Integer(as_string=True, dump_only=True)
     name = fields.Str()
+    computers = Relationship(self_view='person_computers',
+                             self_view_kwargs={'id': '<id>'},
+                             related_view='computer_list',
+                             related_view_kwargs={'id': '<id>'},
+                             many=True,
+                             schema='ComputerSchema',
+                             type_='computer')
