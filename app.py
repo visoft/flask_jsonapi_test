@@ -12,7 +12,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tmp/test.db'
 
 with app.app_context():
     db.init_app(app)
-    db.create_all()
 
 # Create the API object
 api = Api(app)
