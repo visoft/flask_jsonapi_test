@@ -10,6 +10,7 @@ class ComputerSchema(Schema):
 
     id = fields.Integer(as_string=True, dump_only=True)
     serial = fields.Str(requried=True)
+    name = fields.Str(requried=True)
     owner = Relationship(attribute='person',
                          self_view='computer_person',
                          self_view_kwargs={'id': '<id>'},
