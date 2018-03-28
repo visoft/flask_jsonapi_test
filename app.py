@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_rest_jsonapi import Api
+from flask_migrate import Migrate
 from shared.models import db
 from resources.person import PersonList, PersonDetail, PersonRelationship
 from resources.computer import ComputerList, ComputerDetail, \
@@ -12,6 +13,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tmp/test.db'
 
 with app.app_context():
     db.init_app(app)
+    Migrate(app, db)
 
 # Create the API object
 api = Api(app)
